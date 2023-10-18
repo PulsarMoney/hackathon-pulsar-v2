@@ -1,0 +1,293 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 10% 3.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+:root {
+  color: white;
+  --font-family: "Inter";
+  --color-primary: #b8bcbf;
+  --color-secondary: #009db8;
+  --color-third: #f4f9fd;
+  --color-error: #d32f2f;
+  --color-text-selected: white;
+  /* background-color: black; */
+}
+
+body {
+  font-family: var(--font-family);
+  background-image: url("/assets/img/background/background.webp");
+  background-color: black;
+  /* background-image: url("/assets/img/background/desktop-demo.png"); */
+
+  /* background-repeat: round;
+  background-size: cover; */
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+
+  /* min-height: 100vh; */
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+}
+
+/* @media screen and (max-width: 768px) {
+  body {
+    background-image: url("/assets/img/background/mobile-demo.png");
+  }
+} */
+
+html {
+  overflow-x: hidden;
+
+  /* overflow-y: hidden; REMOVE WHEN DEVELOPING */
+  /* background: black; */
+}
+
+/* css reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+div {
+  color: white;
+}
+
+/* img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+} */
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* .tooltip {
+  position: absolute;
+  z-index: 10000;
+  border: 10px solid red;
+} */
+
+.custom_login_component {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+.custom_modal_component {
+  /* position: absolute !important; */
+  z-index: 100000000000000000000 !important;
+}
+
+.custom_login_component:hover {
+  background-color: rgba(80, 220, 239, 0.15) !important;
+}
+
+.nft-card > .MuiPaper-root > .MuiCardContent-root {
+  padding-bottom: 0;
+}
+
+.dapp-transaction-toast div {
+  color: black;
+}
+
+.sign-message {
+  & h1 {
+    font-size: 24px;
+  }
+
+  & textarea {
+    min-height: 100px;
+  }
+
+  & button {
+    align-self: center;
+  }
+}
+
+.textarea-with-copy {
+  color: black;
+  position: relative;
+
+  & a {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+  }
+
+  @include media-breakpoint-up(md) {
+    min-width: 650px;
+  }
+}
+
+.transactions {
+  color: black;
+  position: relative;
+  .transaction-icon {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+  }
+
+  &.table {
+    .transaction-hash .trim {
+      @include media-breakpoint-down(xl) {
+        max-width: none;
+      }
+      @include media-breakpoint-down(lg) {
+        max-width: 26rem;
+      }
+      @include media-breakpoint-down(md) {
+        max-width: 12rem;
+      }
+      @include media-breakpoint-down(sm) {
+        max-width: 8rem;
+      }
+    }
+
+    td,
+    tr {
+      padding: 0.65rem;
+    }
+
+    td {
+      white-space: nowrap;
+      vertical-align: middle;
+    }
+
+    tr:last-of-type {
+      td {
+        border-bottom: 1px solid #dee2e6;
+      }
+    }
+  }
+}
+
+.dapp-core-component__dappModalStyles__dappModalBody.dapp-core-component__walletConnectLoginContainerStyles__xPortal-modal-body {
+  color: black;
+}
+
+.notistack-SnackbarContainer.z-alert {
+  z-index: 10000;
+}
+.notistack-Snackbar {
+  z-index: 10000;
+}
+
+.dapp-core-component__walletConnectLoginContainerStyles__xPortal-container-heading {
+  color: black;
+}
+
+.dapp-core-component__walletConnectLoginContainerStyles__xPortal-container-subheading {
+  color: black;
+}
