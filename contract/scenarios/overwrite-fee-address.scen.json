@@ -1,0 +1,58 @@
+{
+  "name": "overwrite fee address",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.scen.json"
+    },
+    {
+      "step": "setState",
+      "accounts": {
+        "address:other_fee_address": {
+          "nonce": "69",
+          "balance": "1,000,000",
+          "storage": {}
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "set-fee-address-1",
+      "comment": "Overwrite fee addres",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "setFeeAddress",
+        "arguments": ["address:other_fee_address"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:other_fee_address"
+          }
+        },
+        "address:owner": {
+          "nonce": "2",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,000,000"
+        },
+        "address:other_fee_address": {
+          "nonce": "69",
+          "balance": "1,000,000"
+        }
+      }
+    }
+  ]
+}

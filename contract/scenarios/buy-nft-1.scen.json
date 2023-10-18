@@ -1,0 +1,303 @@
+{
+  "name": "buy nft 1",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.scen.json"
+    },
+    {
+      "step": "setState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "esdt": {
+            "str:PULSARNFT-123456": {
+              "lastNonce": "0",
+              "roles": [
+                "ESDTRoleNFTCreate",
+                "ESDTRoleNFTAddQuantity",
+                "ESDTRoleNFTBurn"
+              ]
+            }
+          },
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address"
+          },
+          "owner": "address:owner"
+        }
+      }
+    },
+    {
+      "step": "setState",
+      "accounts": {
+        "address:influencer": {
+          "nonce": "42",
+          "balance": "1,000,000,000,000"
+        },
+        "address:buyer": {
+          "nonce": "47",
+          "balance": "2,000,000,000"
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "register-1",
+      "comment": "register",
+      "tx": {
+        "from": "address:influencer",
+        "to": "sc:contract",
+        "function": "register",
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address",
+            "str:influencers.len": "1",
+            "str:influencers.item|u32:1": "address:influencer",
+            "str:influencers.index|address:influencer": "1"
+          },
+          "esdt": {
+            "str:PULSARNFT-123456": {
+              "lastNonce": "0",
+              "roles": [
+                "ESDTRoleNFTCreate",
+                "ESDTRoleNFTAddQuantity",
+                "ESDTRoleNFTBurn"
+              ]
+            }
+          }
+        },
+        "address:owner": {
+          "nonce": "1",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,000,000"
+        },
+        "address:influencer": {
+          "nonce": "43",
+          "balance": "1,000,000,000,000"
+        },
+        "address:buyer": {
+          "nonce": "47",
+          "balance": "2,000,000,000"
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "setInitialPrices",
+      "comment": "setInitialPrices",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "setInitialPrices",
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "setNftIdentifier",
+      "comment": "setNftIdentifier",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "setNftIdentifier",
+        "arguments": [
+          "str:PULSARNFT-123456"
+        ],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "whitelist-1",
+      "comment": "Add a token to the whitelist",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "addTokenToWhitelist",
+        "arguments": [
+          "str:EGLD"
+        ],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address",
+            "str:influencers.len": "1",
+            "str:influencers.item|u32:1": "address:influencer",
+            "str:influencers.index|address:influencer": "1",
+            "str:whitelistedTokens.len": "1",
+            "str:whitelistedTokens|str:.item|u32:1": "str:EGLD",
+            "str:whitelistedTokens|str:.index|u32:4|str:EGLD": "1",
+            "str:nft_identifier": "str:PULSARNFT-123456",
+            "str:nft_path|biguint:100,000,000": "str:https://ipfs.io/ipfs/QmXzbh1rhM5ep879buDkySWBm8MKEBEsyWbSNSe47TS5KX",
+            "str:nft_path|biguint:200,000,000": "str:https://ipfs.io/ipfs/QmXzbh1rhM5ep879buDkySWBm8MKEBEsyWbSNSe47TS5KX",
+            "str:nft_path|biguint:400,000,000": "str:https://ipfs.io/ipfs/QmXzbh1rhM5ep879buDkySWBm8MKEBEsyWbSNSe47TS5KX"
+          },
+          "esdt": {
+            "str:PULSARNFT-123456": {
+              "lastNonce": "0",
+              "roles": [
+                "ESDTRoleNFTCreate",
+                "ESDTRoleNFTAddQuantity",
+                "ESDTRoleNFTBurn"
+              ]
+            }
+          }
+        },
+        "address:owner": {
+          "nonce": "4",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,000,000"
+        },
+        "address:influencer": {
+          "nonce": "43",
+          "balance": "1,000,000,000,000"
+        },
+        "address:buyer": {
+          "nonce": "47",
+          "balance": "2,000,000,000"
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "buy-1",
+      "comment": "buy with EGLD",
+      "tx": {
+        "from": "address:buyer",
+        "to": "sc:contract",
+        "function": "buyNft",
+        "egldValue": "100,000,000",
+        "arguments": [
+          "address:influencer"
+        ],
+        "gasLimit": "50,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address",
+            "str:influencers.len": "1",
+            "str:influencers.item|u32:1": "address:influencer",
+            "str:influencers.index|address:influencer": "1",
+            "str:whitelistedTokens.len": "1",
+            "str:whitelistedTokens|str:.item|u32:1": "str:EGLD",
+            "str:whitelistedTokens|str:.index|u32:4|str:EGLD": "1",
+            "str:nft_identifier": "str:PULSARNFT-123456",
+            "str:nft_path|biguint:100,000,000": "str:https://ipfs.io/ipfs/QmXzbh1rhM5ep879buDkySWBm8MKEBEsyWbSNSe47TS5KX",
+            "str:nft_path|biguint:200,000,000": "str:https://ipfs.io/ipfs/QmXzbh1rhM5ep879buDkySWBm8MKEBEsyWbSNSe47TS5KX",
+            "str:nft_path|biguint:400,000,000": "str:https://ipfs.io/ipfs/QmXzbh1rhM5ep879buDkySWBm8MKEBEsyWbSNSe47TS5KX"
+          },
+          "esdt": {
+            "str:PULSARNFT-123456": {
+              "lastNonce": "1",
+              "roles": [
+                "ESDTRoleNFTCreate",
+                "ESDTRoleNFTAddQuantity",
+                "ESDTRoleNFTBurn"
+              ]
+            }
+          }
+        },
+        "address:owner": {
+          "nonce": "4",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,020,000"
+        },
+        "address:influencer": {
+          "nonce": "43",
+          "balance": "1,000,099,980,000"
+        },
+        "address:buyer": {
+          "nonce": "48",
+          "balance": "1,900,000,000",
+          "esdt": {
+            "str:PULSARNFT-123456": {
+              "nonce": "1",
+              "balance": "1",
+              "uri": [
+                "str:https://ipfs.io/ipfs/QmXzbh1rhM5ep879buDkySWBm8MKEBEsyWbSNSe47TS5KX"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ]
+}

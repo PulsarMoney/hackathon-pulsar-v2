@@ -1,0 +1,113 @@
+{
+  "name": "add token to whitelist",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.scen.json"
+    },
+    {
+      "step": "setState",
+      "accounts": {
+        "address:sender": {
+          "nonce": "42",
+          "esdt": {
+            "str:USDC-123456": "1,000,000,000,000,000"
+          }
+        },
+        "address:receiver": {
+          "nonce": "42",
+          "esdt": {
+            "str:USDC-123456": "0"
+          }
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "whitelist-1",
+      "comment": "Add a token to the whitelist",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "addTokenToWhitelist",
+        "arguments": ["str:USDC-123456"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "transfer-1",
+      "comment": "Transfer USDC-123456",
+      "tx": {
+        "from": "address:sender",
+        "to": "sc:contract",
+        "function": "transfer",
+        "egldValue": "0",
+        "esdtValue": [
+          {
+            "tokenIdentifier": "str:USDC-123456",
+            "value": "500,000,000,000,000"
+          }
+        ],
+        "arguments": ["address:receiver"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address",
+            "str:whitelistedTokens.len": "1",
+            "str:whitelistedTokens|str:.item|u32:1": "str:USDC-123456",
+            "str:whitelistedTokens|str:.index|u32:11|str:USDC-123456": "1"
+          }
+        },
+        "address:owner": {
+          "nonce": "2",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,000,000",
+          "esdt": {
+            "str:USDC-123456": "100,000,000,000"
+          }
+        },
+        "address:sender": {
+          "nonce": "43",
+          "esdt": {
+            "str:USDC-123456": "500,000,000,000,000"
+          }
+        },
+        "address:receiver": {
+          "nonce": "42",
+          "esdt": {
+            "str:USDC-123456": "499,900,000,000,000"
+          }
+        }
+      }
+    }
+  ]
+}

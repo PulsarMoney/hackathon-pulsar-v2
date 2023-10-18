@@ -1,0 +1,74 @@
+{
+  "name": "overwrite fee address by not owner",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.scen.json"
+    },
+    {
+      "step": "setState",
+      "accounts": {
+        "address:other_fee_address": {
+          "nonce": "69",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:user": {
+          "nonce": "42",
+          "balance": "1,000,000",
+          "storage": {}
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "set-fee-address-1",
+      "comment": "Overwrite fee addres",
+      "tx": {
+        "from": "address:user",
+        "to": "sc:contract",
+        "function": "setFeeAddress",
+        "arguments": ["address:other_fee_address"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Endpoint can only be called by owner",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address"
+          }
+        },
+        "address:owner": {
+          "nonce": "1",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,000,000"
+        },
+        "address:other_fee_address": {
+          "nonce": "69",
+          "balance": "1,000,000"
+        },
+        "address:user": {
+          "nonce": "43",
+          "balance": "1,000,000"
+        }
+      }
+    }
+  ]
+}

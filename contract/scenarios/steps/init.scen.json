@@ -1,0 +1,68 @@
+{
+  "name": "deploy contract",
+  "steps": [
+    {
+      "step": "setState",
+      "accounts": {
+        "address:owner": {
+          "nonce": "0",
+          "balance": "1,000,000"
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,000,000",
+          "esdt": {
+            "str:USDC-123456": "0"
+          }
+        }
+      },
+      "newAddresses": [
+        {
+          "creatorAddress": "address:owner",
+          "creatorNonce": "0",
+          "newAddress": "sc:contract"
+        }
+      ]
+    },
+    {
+      "step": "scDeploy",
+      "txId": "deploy",
+      "tx": {
+        "from": "address:owner",
+        "contractCode": "file:../../output/transfer.wasm",
+        "arguments": ["2", "address:fee_address"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "balance": "0",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address"
+          },
+          "code": "file:../../output/transfer.wasm"
+        },
+        "address:owner": {
+          "nonce": "1",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,000,000"
+        }
+      }
+    }
+  ]
+}

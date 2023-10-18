@@ -1,0 +1,96 @@
+{
+  "name": "add token to whitelist",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.scen.json"
+    },
+    {
+      "step": "setState",
+      "accounts": {
+        "address:sender": {
+          "nonce": "42",
+          "balance": "1,000,000,000,000"
+        },
+        "address:receiver": {
+          "nonce": "42",
+          "balance": "1,000,000"
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "whitelist-1",
+      "comment": "Add a token to the whitelist",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "addTokenToWhitelist",
+        "arguments": ["str:EGLD"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "transfer-1",
+      "comment": "Transfer EGLD",
+      "tx": {
+        "from": "address:sender",
+        "to": "sc:contract",
+        "function": "transfer",
+        "egldValue": "500,000,000,000",
+        "arguments": ["address:receiver"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address",
+            "str:whitelistedTokens.len": "1",
+            "str:whitelistedTokens|str:.item|u32:1": "str:EGLD",
+            "str:whitelistedTokens|str:.index|u32:4|str:EGLD": "1"
+          }
+        },
+        "address:owner": {
+          "nonce": "2",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "101,000,000"
+        },
+        "address:sender": {
+          "nonce": "43",
+          "balance": "500,000,000,000"
+        },
+        "address:receiver": {
+          "nonce": "42",
+          "balance": "499,901,000,000"
+        }
+      }
+    }
+  ]
+}

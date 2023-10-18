@@ -1,0 +1,53 @@
+{
+  "name": "add token to whitelist",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.scen.json"
+    },
+    {
+      "step": "scCall",
+      "txId": "register-1",
+      "comment": "register",
+      "tx": {
+        "from": "address:fee_address",
+        "to": "sc:contract",
+        "function": "register",
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address",
+            "str:influencers.len": "1",
+            "str:influencers.item|u32:1": "address:fee_address",
+            "str:influencers.index|address:fee_address": "1"
+          }
+        },
+        "address:owner": {
+          "nonce": "1",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "43",
+          "balance": "1,000,000"
+        }
+      }
+    }
+  ]
+}

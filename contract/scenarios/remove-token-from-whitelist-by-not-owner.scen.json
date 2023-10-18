@@ -1,0 +1,89 @@
+{
+  "name": "remove token from whitelist by not owner",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.scen.json"
+    },
+    {
+      "step": "setState",
+      "accounts": {
+        "address:user": {
+          "nonce": "42",
+          "balance": "1,000,000",
+          "storage": {}
+        }
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "whitelist-1",
+      "comment": "Add a token to the whitelist",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "addTokenToWhitelist",
+        "arguments": ["str:USDC-123123"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "scCall",
+      "txId": "whitelist-2",
+      "comment": "Remove a token from the whitelist",
+      "tx": {
+        "from": "address:user",
+        "to": "sc:contract",
+        "function": "removeTokenFromWhitelist",
+        "arguments": ["str:USDC-123123"],
+        "gasLimit": "5,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Endpoint can only be called by owner",
+        "gas": "*",
+        "refund": "*"
+      }
+    },
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "code": "file:../output/transfer.wasm",
+          "storage": {
+            "str:whitelistedTokens.len": "1",
+            "str:whitelistedTokens|str:.item|u32:1": "str:USDC-123123",
+            "str:whitelistedTokens|str:.index|u32:11|str:USDC-123123": "1",
+            "str:feePercentage": "2",
+            "str:feeAddress": "address:fee_address"
+          }
+        },
+        "address:owner": {
+          "nonce": "2",
+          "balance": "1,000,000",
+          "storage": {}
+        },
+        "address:fee_address": {
+          "nonce": "42",
+          "balance": "1,000,000"
+        },
+        "address:user": {
+          "nonce": "43",
+          "balance": "1,000,000",
+          "storage": {}
+        }
+      }
+    }
+  ]
+}
