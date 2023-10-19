@@ -1,0 +1,43 @@
+{
+  "name": "error when pay a not found invoice",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/whitelist-1.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-invoice-4.steps.json"
+    },
+    {
+      "step": "scCall",
+      "id": "pay-invoice-4",
+      "tx": {
+        "from": "address:acc4",
+        "to": "sc:contract",
+        "function": "payInvoice",
+        "arguments": ["u64:1"],
+        "esdtValue": [
+          {
+            "tokenIdentifier": "str:TESTTOKEN-123123",
+            "nonce": "4",
+            "value": "100"
+          }
+        ],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Wrong nonce, wanted 3, got 4.",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

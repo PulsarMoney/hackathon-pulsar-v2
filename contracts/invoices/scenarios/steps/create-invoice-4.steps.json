@@ -1,0 +1,24 @@
+{
+  "name": "create invoice 4 - with new whitelisted token",
+  "steps": [
+    {
+      "step": "scCall",
+      "id": "create-invoice-4",
+      "tx": {
+        "from": "address:acc1",
+        "to": "sc:contract",
+        "function": "addInvoice",
+        "arguments": ["address:acc1", "str:TESTTOKEN-123123", "123,000", "u64:3"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": ["1"],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

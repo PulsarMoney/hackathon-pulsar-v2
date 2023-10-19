@@ -1,0 +1,24 @@
+{
+  "name": "create invoice 3 - with no whitelisted token",
+  "steps": [
+    {
+      "step": "scCall",
+      "id": "create-invoice-3",
+      "tx": {
+        "from": "address:acc1",
+        "to": "sc:contract",
+        "function": "addInvoice",
+        "arguments": ["address:acc1", "str:TEST-123456", "100,000", "u64:0"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Cannot create invoice with TEST-123456, because it is not whitelisted!",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

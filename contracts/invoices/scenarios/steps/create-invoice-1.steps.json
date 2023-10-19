@@ -1,0 +1,24 @@
+{
+  "name": "create invoice 1",
+  "steps": [
+    {
+      "step": "scCall",
+      "id": "create-invoice-1",
+      "tx": {
+        "from": "address:acc1",
+        "to": "sc:contract",
+        "function": "addInvoice",
+        "arguments": ["address:acc1", "str:EGLD", "100,000,000", "u64:0"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": ["1"],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

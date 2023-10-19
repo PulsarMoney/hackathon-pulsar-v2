@@ -1,0 +1,32 @@
+{
+  "name": "error invoice close only owner",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-invoice-1.steps.json"
+    },
+    {
+      "step": "scCall",
+      "id": "close-2",
+      "tx": {
+        "from": "address:acc2",
+        "to": "sc:contract",
+        "function": "cancelInvoice",
+        "arguments": ["u64:1"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Only the creator can cancel the invoice.",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

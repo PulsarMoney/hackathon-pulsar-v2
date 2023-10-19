@@ -1,0 +1,13 @@
+{
+  "name": "error invoice close only owner",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-invoice-3.steps.json"
+    }
+  ]
+}

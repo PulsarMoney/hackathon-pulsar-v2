@@ -1,0 +1,33 @@
+{
+  "name": "error when pay a not found invoice",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-invoice-1.steps.json"
+    },
+    {
+      "step": "scCall",
+      "id": "error-pay-invoice-not-found",
+      "tx": {
+        "from": "address:acc1",
+        "to": "sc:contract",
+        "function": "payInvoice",
+        "egldValue": "123123",
+        "arguments": ["u64:1"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Wrong amount, wanted 100000000, got 123123.",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

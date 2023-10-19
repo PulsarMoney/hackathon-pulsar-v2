@@ -1,0 +1,52 @@
+{
+    "steps": [
+        {
+            "step": "setState",
+            "accounts": {
+                "0x66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "developerRewards": "0"
+                }
+            }
+        },
+        {
+            "step": "setState",
+            "accounts": {
+                "0x2b32db6c2c0a6235fb1397e8225ea85e0f0e6e8c7b126d0016ccbde0e667151e": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "developerRewards": "0"
+                }
+            }
+        },
+        {
+            "step": "setState",
+            "accounts": {
+                "0x000000000000000071ed1721fd5319b383cca3a1f9fce3aa1c8cd3bd37af20d7": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "code": "file:../output/invoice-contract.wasm",
+                    "owner": "0x66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+                    "developerRewards": "0"
+                }
+            }
+        },
+        {
+            "step": "setState",
+            "accounts": {
+                "0x000000000000000071ed1721fd5319b383cca3a1f9fce3aa1c8cd3bd37af20d7": {
+                    "nonce": "0",
+                    "balance": "0",
+                    "storage": {
+                        "str:fee": "0x64",
+                        "str:invoice_id": "0x"
+                    },
+                    "code": "file:../output/invoice-contract.wasm",
+                    "owner": "0x66687aadf862bd776c8fc18b8e9f8e20089714856ee233b3902a591d0d5f2925",
+                    "developerRewards": "0"
+                }
+            }
+        }
+    ]
+}

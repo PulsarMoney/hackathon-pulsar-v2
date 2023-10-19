@@ -1,0 +1,29 @@
+{
+  "name": "error when pay a not found invoice",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+
+    {
+      "step": "scCall",
+      "id": "error-cancel-invoice-not-found",
+      "tx": {
+        "from": "address:acc1",
+        "to": "sc:contract",
+        "function": "cancelInvoice",
+        "arguments": ["u64:7"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Invoice with id: 7, does not exist.",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}
