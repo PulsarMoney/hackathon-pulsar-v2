@@ -1,0 +1,186 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.71.0-nightly",
+            "commitHash": "a2b1646c597329d0a25efa3889b66650f65de1de",
+            "commitDate": "2023-05-25",
+            "channel": "Nightly",
+            "short": "rustc 1.71.0-nightly (a2b1646c5 2023-05-25)"
+        },
+        "contractCrate": {
+            "name": "transfer",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.43.3"
+        }
+    },
+    "name": "TransferContract",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "fee_percentage",
+                "type": "u32"
+            },
+            {
+                "name": "fee_address",
+                "type": "Address"
+            }
+        ],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "setFeePercentage",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "fee_percentage",
+                    "type": "u32"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setFeeAddress",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "fee_address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setNftIdentifier",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "nft_identifier",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "addTokenToWhitelist",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "token",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "removeTokenFromWhitelist",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "token",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setNftPrice",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "price",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "nft_path",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setInitialPrices",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "buyNft",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "EGLD"
+            ],
+            "inputs": [
+                {
+                    "name": "influencer_address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "register",
+            "mutability": "mutable",
+            "inputs": [],
+            "outputs": []
+        },
+        {
+            "name": "transfer",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "receiver_address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getFeePercentage",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        },
+        {
+            "name": "getFeeAddress",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "Address"
+                }
+            ]
+        },
+        {
+            "name": "getWhitelistedTokens",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<EgldOrEsdtTokenIdentifier>",
+                    "multi_result": true
+                }
+            ]
+        }
+    ],
+    "events": [],
+    "hasCallback": false,
+    "types": {}
+}
