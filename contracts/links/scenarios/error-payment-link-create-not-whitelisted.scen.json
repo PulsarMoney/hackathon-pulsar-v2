@@ -1,0 +1,13 @@
+{
+  "name": "error payment link create not whitelisted",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-payment-link-3.steps.json"
+    }
+  ]
+}

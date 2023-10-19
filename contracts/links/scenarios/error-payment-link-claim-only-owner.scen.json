@@ -1,0 +1,38 @@
+{
+  "name": "error payment link claim only owner",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-payment-link-1.steps.json"
+    },
+    {
+      "step": "setState",
+      "currentBlockInfo": {
+        "blockTimestamp": "110,000"
+      }
+    },
+    {
+      "step": "scCall",
+      "id": "create-payment-link-1",
+      "tx": {
+        "from": "address:acc2",
+        "to": "sc:contract",
+        "function": "claim",
+        "arguments": ["u64:1"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Endpoint can only be called by owner",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

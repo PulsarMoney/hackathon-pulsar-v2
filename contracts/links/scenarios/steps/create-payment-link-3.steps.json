@@ -1,0 +1,31 @@
+{
+  "name": "create payment-link 3 - with no whitelisted token",
+  "steps": [
+    {
+      "step": "scCall",
+      "id": "create-payment-link-3",
+      "tx": {
+        "from": "address:acc4",
+        "to": "sc:contract",
+        "function": "create",
+        "esdtValue": [
+          {
+            "tokenIdentifier": "str:LKMEX-123456",
+            "nonce": "999",
+            "value": "100,000"
+          }
+        ],
+        "arguments": ["u64:1000"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Cannot create payment link with LKMEX-123456, because it is not whitelisted!",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

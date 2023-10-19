@@ -1,0 +1,92 @@
+{
+  "name": "check state after create 1",
+  "steps": [
+    {
+      "step": "checkState",
+      "accounts": {
+        "sc:contract": {
+          "nonce": "0",
+          "balance": "100,020,000",
+          "code": "file:../../output/payment_links.wasm",
+          "storage": {
+            "str:whitelisted_tokens_and_collections.len": "2",
+            "str:whitelisted_tokens_and_collections|str:.item|u32:1": "str:EGLD",
+            "str:whitelisted_tokens_and_collections|str:.index|u32:4|str:EGLD": "1",
+            "str:whitelisted_tokens_and_collections|str:.item|u32:2": "str:USDC-123456",
+            "str:whitelisted_tokens_and_collections|str:.index|u32:11|str:USDC-123456": "2",
+            "str:fee_address": "address:feeAddr",
+            "str:fee": "0",
+            "str:last_id": "1",
+            "str:payment_links|u64:1": {
+              "0-token": "u32:4|str:EGLD",
+              "1-nonce": "u64:0",
+              "2-amount": "biguint:100,020,000",
+              "3-expiration_timestamp": "u64:100,600",
+              "4-creator": "address:acc1"
+            }
+          }
+        },
+        "address:owner": {
+          "nonce": "3",
+          "balance": "0"
+        },
+        "address:acc1": {
+          "nonce": "1",
+          "balance": "9,899,980,000",
+          "storage": {}
+        },
+        "address:acc2": {
+          "nonce": "0",
+          "balance": "10,000,000,000",
+          "storage": {},
+          "esdt": {
+            "str:USDC-123456": {
+              "balance": "10,000,000,000"
+            }
+          }
+        },
+        "address:acc3": {
+          "nonce": "0",
+          "balance": "10,000,000,000",
+          "esdt": {
+            "str:LKMEX-123456": {
+              "nonce": "999",
+              "balance": "10,000,000,000"
+            }
+          }
+        },
+        "address:acc4": {
+          "nonce": "0",
+          "balance": "10,000,000,000",
+          "esdt": {
+            "str:LKMEX-123456": {
+              "nonce": "999",
+              "balance": "10,000,000,000"
+            },
+            "str:USDC-123456": "10,000,000,000",
+            "str:TESTTOKEN-123123": {
+              "instances": [
+                {
+                  "nonce": "3",
+                  "balance": "200,000"
+                },
+                {
+                  "nonce": "4",
+                  "balance": "100,000"
+                }
+              ]
+            },
+            "str:TESTNFT-123123": {
+              "nonce": "31",
+              "balance": "1"
+            }
+          }
+        },
+        "address:feeAddr": {
+          "nonce": "0",
+          "balance": "0"
+        }
+      }
+    }
+  ]
+}

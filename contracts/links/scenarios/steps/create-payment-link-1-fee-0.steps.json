@@ -1,0 +1,25 @@
+{
+  "name": "create payment link 1",
+  "steps": [
+    {
+      "step": "scCall",
+      "id": "create-payment-link-1",
+      "tx": {
+        "from": "address:acc1",
+        "to": "sc:contract",
+        "function": "create",
+        "egldValue": "100,020,000",
+        "arguments": ["u64:600"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": ["1"],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

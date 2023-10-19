@@ -1,0 +1,201 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.71.0-nightly",
+            "commitHash": "a2b1646c597329d0a25efa3889b66650f65de1de",
+            "commitDate": "2023-05-25",
+            "channel": "Nightly",
+            "short": "rustc 1.71.0-nightly (a2b1646c5 2023-05-25)"
+        },
+        "contractCrate": {
+            "name": "payment_links",
+            "version": "0.0.1"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.43.3"
+        }
+    },
+    "name": "PaymentLinks",
+    "constructor": {
+        "inputs": [
+            {
+                "name": "fee",
+                "type": "u64"
+            },
+            {
+                "name": "fee_address",
+                "type": "Address"
+            }
+        ],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "create",
+            "mutability": "mutable",
+            "payableInTokens": [
+                "*"
+            ],
+            "inputs": [
+                {
+                    "name": "duration",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "claim",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "id",
+                    "type": "u64"
+                },
+                {
+                    "name": "address",
+                    "type": "Address"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "withdraw",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "id",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "whitelistToken",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "token",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "unwhitelistToken",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "token",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "setFee",
+            "onlyOwner": true,
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "fee",
+                    "type": "u64"
+                }
+            ],
+            "outputs": []
+        },
+        {
+            "name": "getFee",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "getMinimumDuration",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u64"
+                }
+            ]
+        },
+        {
+            "name": "getFeeAddress",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "Address"
+                }
+            ]
+        },
+        {
+            "name": "getPaymentLinks",
+            "mutability": "readonly",
+            "inputs": [
+                {
+                    "name": "identifier",
+                    "type": "u64"
+                }
+            ],
+            "outputs": [
+                {
+                    "type": "Payment"
+                }
+            ]
+        },
+        {
+            "name": "getWhitelistedTokensAndCollections",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "variadic<EgldOrEsdtTokenIdentifier>",
+                    "multi_result": true
+                }
+            ]
+        }
+    ],
+    "events": [],
+    "hasCallback": false,
+    "types": {
+        "Payment": {
+            "type": "struct",
+            "fields": [
+                {
+                    "name": "token",
+                    "type": "EgldOrEsdtTokenIdentifier"
+                },
+                {
+                    "name": "nonce",
+                    "type": "u64"
+                },
+                {
+                    "name": "amount",
+                    "type": "BigUint"
+                },
+                {
+                    "name": "expiration_timestamp",
+                    "type": "u64"
+                },
+                {
+                    "name": "creator",
+                    "type": "Address"
+                }
+            ]
+        }
+    }
+}

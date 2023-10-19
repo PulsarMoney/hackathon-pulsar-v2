@@ -1,0 +1,17 @@
+{
+  "name": "create payment link 2",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-payment-link-2.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/check-state-after-create-2.steps.json"
+    }
+  ]
+}

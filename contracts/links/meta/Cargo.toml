@@ -1,0 +1,17 @@
+[package]
+name = "payment_links-meta"
+version = "0.0.1"
+edition = "2021"
+publish = false
+authors = [ "you"]
+
+[dev-dependencies]
+
+[dependencies.payment_links]
+path = ".."
+
+[dependencies.multiversx-sc]
+version = "0.43.2"
+
+[dependencies.multiversx-sc-meta]
+version = "0.43.2"

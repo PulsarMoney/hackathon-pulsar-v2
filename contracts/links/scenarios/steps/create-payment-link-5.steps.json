@@ -1,0 +1,31 @@
+{
+  "name": "create payment-link 4 - with new whitelisted token",
+  "steps": [
+    {
+      "step": "scCall",
+      "id": "create-payment-link-4",
+      "tx": {
+        "from": "address:acc4",
+        "to": "sc:contract",
+        "function": "create",
+        "arguments": ["u64:500"],
+        "esdtValue": [
+          {
+            "tokenIdentifier": "str:TESTNFT-123123",
+            "nonce": "31",
+            "value": "1"
+          }
+        ],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": ["1"],
+        "status": "0",
+        "message": "",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

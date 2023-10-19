@@ -1,0 +1,25 @@
+{
+  "name": "create payment-link 4 - with new whitelisted token",
+  "steps": [
+    {
+      "step": "scCall",
+      "id": "create-payment-link-4",
+      "tx": {
+        "from": "address:acc1",
+        "to": "sc:contract",
+        "function": "create",
+        "egldValue": "100,020,000",
+        "arguments": ["u64:100"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Duration must be at least 300 seconds.",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "error duration too low",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-payment-link-6.steps.json"
+    }
+  ]
+}

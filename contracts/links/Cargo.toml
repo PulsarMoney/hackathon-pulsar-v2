@@ -1,0 +1,18 @@
+[package]
+name = "payment_links"
+version = "0.0.1"
+edition = "2021"
+publish = false
+authors = [ "you"]
+
+[lib]
+path = "src/payment_links.rs"
+
+[dependencies.multiversx-sc]
+version = "0.43.2"
+
+[dev-dependencies.multiversx-sc-scenario]
+version = "0.43.2"
+
+[dependencies.multiversx-sc-modules]
+version = "0.39.5"

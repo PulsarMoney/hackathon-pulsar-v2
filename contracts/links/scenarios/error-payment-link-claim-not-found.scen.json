@@ -1,0 +1,32 @@
+{
+  "name": "error when pay a not found Payment-link",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-payment-link-1.steps.json"
+    },
+    {
+      "step": "scCall",
+      "id": "error-withdraw-Payment-link-not-found",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "claim",
+        "arguments": ["u64:7", "address:acc1"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Payment link with id: 7, does not exist.",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

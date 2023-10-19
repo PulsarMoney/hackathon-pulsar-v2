@@ -9,3 +9,8 @@
 contracts/*/deployments.txt
 contracts/pages/meta/target/*
 contracts/pages/wasm/target/*
+
+
+contracts/links/meta/target/*
+contracts/links/wasm/target/*
+contracts/links/target/debug/*

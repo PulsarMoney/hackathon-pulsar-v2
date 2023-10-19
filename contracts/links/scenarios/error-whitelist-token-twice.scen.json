@@ -1,0 +1,32 @@
+{
+  "name": "error when whitelisting a token twice",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/whitelist-1.steps.json"
+    },
+    {
+      "step": "scCall",
+      "id": "whitelist-second",
+      "tx": {
+        "from": "address:owner",
+        "to": "sc:contract",
+        "function": "whitelistToken",
+        "arguments": ["str:TESTTOKEN-123123"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Cannot whitelist TESTTOKEN-123123 twice!",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}

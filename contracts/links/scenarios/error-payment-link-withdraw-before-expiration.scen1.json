@@ -1,0 +1,32 @@
+{
+  "name": "error payment link withdraw before expiration",
+  "steps": [
+    {
+      "step": "externalSteps",
+      "path": "steps/init.steps.json"
+    },
+    {
+      "step": "externalSteps",
+      "path": "steps/create-payment-link-1.steps.json"
+    },
+    {
+      "step": "scCall",
+      "id": "create-payment-link-1",
+      "tx": {
+        "from": "address:acc1",
+        "to": "sc:contract",
+        "function": "withdraw",
+        "arguments": ["u64:1"],
+        "gasLimit": "20,000,000",
+        "gasPrice": "0"
+      },
+      "expect": {
+        "out": [],
+        "status": "4",
+        "message": "str:Payment link has not expired yet.",
+        "gas": "*",
+        "refund": "*"
+      }
+    }
+  ]
+}
