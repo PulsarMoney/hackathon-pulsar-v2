@@ -76,3 +76,16 @@ Filled invoice:
 ![Filled invoice](demoScreenshots/invoices/filledInvoice.png)
 
 ### Discord Payments Bot
+Command overview of discord bot:
+![Command overview of discord bot](demoScreenshots/discordPaymentBot/discordBotCommandOverview.png)
+
+Fields of an empty send command:
+![Fields of an empty send command](demoScreenshots/discordPaymentBot/emptySendCommand.png)
+
+Token field in the send command:
+![Token field in the send command](demoScreenshots/discordPaymentBot/sendCommandTokenField.png)
+
+Receiver field in the send command:
+![Receiver field in the send command](demoScreenshots/discordPaymentBot/sendCommandReceiverField.png)
+
+### Pulsar Page
