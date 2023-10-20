@@ -12,7 +12,7 @@ export const NftComponent = () => {
         <NftButton image={goldNftImage} nftPrice={4} nftTier="Gold" creator="Matthew Joppinski" />
         <div className="flex justify-items-end">
           <NftButton image={silverNftImage} nftPrice={2} nftTier="Silver" creator="Matthew Joppinski" />
-          <NftButton image={bronzeNftImage} nftPrice={1} nftTier="Silver" creator="Matthew Joppinski" />
+          <NftButton image={bronzeNftImage} nftPrice={1} nftTier="Bronze" creator="Matthew Joppinski" />
         </div>
       </div>
     </>
