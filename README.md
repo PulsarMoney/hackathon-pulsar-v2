@@ -1,4 +1,4 @@
-# Pulsar Money V2 Business Plan README
+# Pulsar Money V2
 
 ## Executive Summary
 
