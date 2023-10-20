@@ -88,4 +88,12 @@ Token field in the send command:
 Receiver field in the send command:
 ![Receiver field in the send command](demoScreenshots/discordPaymentBot/sendCommandReceiverField.png)
 
+Filled camping command:
+![Filled camping command](demoScreenshots/discordPaymentBot/filledCampaignCommand.png)
+
 ### Pulsar Page
+Landing Pulsar page:
+![Landing Pulsar page](demoScreenshots/pulsarPages/landingPulsarPage.png)
+
+Become a Pulsar page:
+![Become a Pulsar page](demoScreenshots/pulsarPages/becomePulsarPage.png)
