@@ -56,3 +56,23 @@ Pulsar V2 builds upon the existing infrastructure to minimize development costs.
 Pulsar Money V2 continues the legacy of innovation in programmable payments. It aims to refine the MultiverseX Ecosystem, offering user-centric solutions and bridging technology with real-world applications. The dedicated team ensures Pulsar Money remains cutting-edge and relevant. The commitment is to revolutionize digital payments and unleash the blockchain's transformative potential.
 
 For more details, refer to the full business plan.
+
+
+## Demo Snapshots
+
+### Payment Links
+Initial Payment Links form:
+![Empty Payment Links Form](demoScreenshots/paymentLinks/initialForm.png)
+Filled Payment Links form:
+![Filled Payment Links form](demoScreenshots/paymentLinks/filledForm.png)
+Creation of Payment Link:
+![Creation of Payment Links Form](demoScreenshots/paymentLinks/paymentLink.png)
+
+### Invoices
+Invoices landing page:
+![Invoices Landing Page](demoScreenshots/invoices/invoicesLandingPage.png)
+
+Filled invoice:
+![Filled invoice](demoScreenshots/invoices/filledInvoice.png)
+
+### Discord Payments Bot
