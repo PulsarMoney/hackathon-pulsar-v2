@@ -1,10 +1,10 @@
-export interface IconProps {
+export interface ProfilePictureProps {
   firstName?: string;
   lastName?: string;
   imageUrl?: string;
 }
 
-export const Icon = (props: IconProps) => {
+export const ProfilePicture = (props: ProfilePictureProps) => {
   const initialFirstName = props.firstName ? props.firstName.charAt(0) : "";
   const initialLastName = props.lastName ? props.lastName.charAt(0) : "";
   const initials = initialFirstName + initialLastName;

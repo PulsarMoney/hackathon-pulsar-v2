@@ -1,0 +1,7 @@
+[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+body {
+  background: black;
+}

@@ -1,4 +1,3 @@
-import { ICONS } from "../../assets/utils";
 import { useLinks } from "@/hooks/useLinks";
 
 export const DetailComponent = () => {
@@ -13,11 +12,11 @@ export const DetailComponent = () => {
   }
 
   return (
-    <div className="w-full max-w-2xl rounded-lg m-auto my-20 bg-inherit relative flex flex-col items-center justify-center rounded-lg space-y-4">
+    <div className="w-full max-w-2xl rounded-lg m-auto my-20 bg-inherit relative flex flex-col items-center justify-center space-y-4">
       <p className="text-xl font-bold mb-4 text-white">Learn more</p>
       <div className="grid gap-4 grid-cols-1 grid-rows-3">
         {data.map((element, index) => (
-          <CustomLink key={index} link={element.url} imageUrl={ICONS[0]} content={element.description} />
+          <CustomLink key={index} link={element.url} imageUrl={element.logo} content={element.description} />
         ))}
       </div>
     </div>

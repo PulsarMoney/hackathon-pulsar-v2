@@ -1,0 +1,13 @@
+input[type="file"] {
+  display: none;
+}
+
+/* Style the custom label */
+.file-input-label {
+  display: inline-block;
+  padding: 8px 12px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 1.1rem;
+}
+/*  */

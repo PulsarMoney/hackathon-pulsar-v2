@@ -12,10 +12,9 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 
 import { Input } from "@/components/ui/input";
-import { useUserStore } from "@/hooks/useUserStore";
 import axios from "axios";
 import { usePulsarActions } from "@/assets/hooks/usePulsarActions";
-import { PularPageMessages } from "@/assets/messages";
+import { PularPageDonationMessages } from "@/assets/messages";
 import { IToken } from "@/types";
 import { useNativeAuth } from "@/hooks/useNativeAuth";
 import { useParams } from "react-router-dom";
@@ -34,17 +33,20 @@ export const TransferForm = (props: TransferFormProps) => {
   const selectedAmount = form.watch("amount");
 
   async function onSubmit() {
-    const response = await axios.post("http://localhost:3000/transfer/donate", {
-      //"erd1dp7df07e6funz27svc3nyz8yn6yqjf6ke2kv2gk2f7mtxkudjq2sjvgnc3"
-      receiverAddress: id,
-      tokenId: selectedToken.identifier,
-      amount: selectedAmount,
-    }, {
-      headers: {
-        Authorization: `Bearer ${nativeAuthToken}`,
+    const response = await axios.post(
+      "http://localhost:3000/transfer/donate",
+      {
+        receiverAddress: id,
+        tokenId: selectedToken.identifier,
+        amount: selectedAmount,
       },
-    });
-    pulsarActions.refreshAndSend(response.data, PularPageMessages);
+      {
+        headers: {
+          Authorization: `Bearer ${nativeAuthToken}`,
+        },
+      }
+    );
+    pulsarActions.refreshAndSend(response.data, PularPageDonationMessages);
   }
 
   return (

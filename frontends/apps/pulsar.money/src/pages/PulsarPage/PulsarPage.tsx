@@ -2,9 +2,12 @@ import { useUser } from "@/hooks/useUser";
 import { DetailComponent } from "./DetailComponent";
 import { Profile } from "./Profile";
 import TransferComponent from "./TransferComponent";
+import { NftComponent } from "./NftComponent";
+import { PulsarPageForm } from "./PulsarPageForm";
 
 export const PulsarPage = () => {
   const { isLoading, isError, data, error } = useUser();
+  const showForm = !data;
 
   if (isLoading) {
     return <span>Loading...</span>;
@@ -51,9 +54,15 @@ export const PulsarPage = () => {
           WebkitTransform: "translate3d(0, 0, 0)",
         }}
       ></div>
-      <Profile data={data} />
-      <TransferComponent data={data} />
-      <DetailComponent />
+      {!showForm && (
+        <>
+          <Profile data={data} />
+          <TransferComponent />
+          <DetailComponent />
+          <NftComponent />
+        </>
+      )}
+      {showForm && <PulsarPageForm></PulsarPageForm>}
     </div>
   );
 };
